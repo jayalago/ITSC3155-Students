@@ -1,8 +1,6 @@
 print("hello world!")
-# print blank lines
-print (3*"\n")
-print("hello world \nafter three blank lines!")
 
+print("hello world \nafter three blank lines!")
 
 # Declare a variable and initialize it
 f = 0
@@ -12,16 +10,16 @@ f = "ITSC-3155"
 print(f)
 
 # Python String Concatenation and Variable
-a="ITSC-"
+a = "ITSC-"
 b = 3155
 # print(a+b)
-print(a+str(b))
+print(a + str(b))
 
 # Delete a variable
-f = 11;
+f = 11
 print(f)
-del f
-print(f)
+# del f
+# print(f)
 
 """
     Variables are referred to “envelop” or “buckets” where information can be maintained and referenced. 
