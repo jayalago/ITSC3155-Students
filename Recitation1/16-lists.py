@@ -38,3 +38,8 @@ print(len(breakfast) == 3)
 # string in the `breakfast` list.
 lengths = [len(item) for item in breakfast]
 print(lengths)
+
+lengths1 = []
+for item in breakfast:
+    lengths1.append(len(item))
+print(lengths1)

@@ -11,11 +11,13 @@ for row in data:
 
 # Create the list [4, 3, 2, 1] and assign it to variable numbers
 numbers = [4, 3, 2, 1]
+print(numbers)
 
 
 # Create a copy of the number list using [:]
 numbers_copy = numbers[:]
-
+print(numbers_copy)
 
 # Sort the numbers list in numerical order
 numbers.sort()
+print(numbers)
