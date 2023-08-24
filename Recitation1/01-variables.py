@@ -1,6 +1,6 @@
 print("hello world!")
 
-print("hello world \nafter three blank lines!")
+print("hello world \nafter a blank line!")
 
 # Declare a variable and initialize it
 f = 0
