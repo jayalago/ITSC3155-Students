@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-
+from typing import Optional
 app = FastAPI()
 
 
@@ -8,10 +8,22 @@ class Food(BaseModel):
     id: int
     name: str
     price: float
-
+class FoodUpdate(BaseModel):
+    id: Optional[int]=None
+    name: Optional[str]=None
+    price: Optional[float]=None
 
 food_instance = [Food(id=1, name="ham", price=5.2), Food(id=2, name="bread", price=2.5)]
 
+@app.patch("/items/{item_id}")
+def patch_item(item_id: int, item: FoodUpdate):
+    for index, instance in enumerate(food_instance):
+        if instance.id == item_id:
+            update_data = item.model_dump(exclude_unset=True)
+            updated_item = instance.model_copy(update=update_data)
+            food_instance[index] = updated_item
+            return updated_item
+    return {"message": "Item not Found!"}
 
 @app.get("/")
 def read_all():
@@ -24,7 +36,6 @@ def read_item(item_id: int):
         if item.id == item_id:
             return item
     return "Item not Found!"
-
 
 @app.post("/items")
 def write_item(food: Food):
@@ -44,7 +55,6 @@ def update_item(item_id: int, item: Food):
         return "Item not Found!"
 
     return food_instance
-
 
 @app.delete("/items/{item_id}")
 def delete_item(item_id: int):
