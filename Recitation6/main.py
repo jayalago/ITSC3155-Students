@@ -15,20 +15,9 @@ class FoodUpdate(BaseModel):
 
 food_instance = [Food(id=1, name="ham", price=5.2), Food(id=2, name="bread", price=2.5)]
 
-@app.patch("/items/{item_id}")
-def patch_item(item_id: int, item: FoodUpdate):
-    for index, instance in enumerate(food_instance):
-        if instance.id == item_id:
-            update_data = item.model_dump(exclude_unset=True)
-            updated_item = instance.model_copy(update=update_data)
-            food_instance[index] = updated_item
-            return updated_item
-    return {"message": "Item not Found!"}
-
 @app.get("/")
 def read_all():
     return food_instance
-
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int):
@@ -42,6 +31,9 @@ def write_item(food: Food):
     food_instance.append(food)
     return food_instance
 
+@app.post("/")
+def message():
+    return {"message": "Hello World"}
 
 @app.put("/items/{item_id}")
 def update_item(item_id: int, item: Food):
